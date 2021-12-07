@@ -18,14 +18,14 @@ limitations under the License.
     <div
       style="font-size: var(--font-size-title); margin-bottom:10px;"
       :contenteditable="meta.permissions.write"
-      v-text="sketch.name"
+      v-text=".name"
       @blur="onEditTitle"
       @keydown.enter.prevent="onEditTitle"
     ></div>
     <p
       style="max-width:75ch;"
       :contenteditable="meta.permissions.write"
-      v-text="sketch.description"
+      v-text=".description"
       @blur="onEditDescription"
       @keydown.enter.prevent="onEditDescription"
     ></p>
@@ -37,8 +37,8 @@ import ApiClient from '../../utils/RestApiClient'
 
 export default {
   computed: {
-    sketch() {
-      return this.$store.state.sketch
+    () {
+      return this.$store.state.
     },
     meta() {
       return this.$store.state.meta
@@ -46,15 +46,15 @@ export default {
   },
   methods: {
     onEditTitle(e) {
-      this.sketch.name = e.target.innerText
-      this.saveSketchSummary()
+      this..name = e.target.innerText
+      this.saveSummary()
     },
     onEditDescription(e) {
-      this.sketch.description = e.target.innerText
-      this.saveSketchSummary()
+      this..description = e.target.innerText
+      this.saveSummary()
     },
-    saveSketchSummary() {
-      ApiClient.saveSketchSummary(this.sketch.id, this.sketch.name, this.sketch.description)
+    saveSummary() {
+      ApiClient.saveSummary(this..id, this..name, this..description)
         .then(response => {})
         .catch(e => {
           console.error(e)

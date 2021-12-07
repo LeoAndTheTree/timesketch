@@ -18,13 +18,13 @@ limitations under the License.
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
-        <input v-model="form.name" class="input" type="text" required placeholder="Name your sketch" autofocus />
+        <input v-model="form.name" class="input" type="text" required placeholder="Name your " autofocus />
       </div>
     </div>
     <div class="field">
       <label class="label">Description (optional)</label>
       <div class="control">
-        <textarea v-model="form.description" class="textarea" placeholder="Describe your sketch"></textarea>
+        <textarea v-model="form.description" class="textarea" placeholder="Describe your "></textarea>
       </div>
     </div>
     <div class="field">
@@ -57,11 +57,11 @@ export default {
         name: this.form.name,
         description: this.form.description,
       }
-      ApiClient.createSketch(formData)
+      ApiClient.create(formData)
         .then(response => {
-          let newSketchId = response.data.objects[0].id
+          let newId = response.data.objects[0].id
           this.clearFormData()
-          this.$router.push({ name: 'Overview', params: { sketchId: newSketchId } })
+          this.$router.push({ name: 'Overview', params: { Id: newId } })
         })
         .catch(e => {})
     },

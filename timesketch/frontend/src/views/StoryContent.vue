@@ -27,8 +27,11 @@ limitations under the License.
       <div class="container is-fluid">
         <div class="card">
           <div class="card-content" style="padding:50px;">
-            <div class="markdown-body ts-markdown-body-color" style="margin-bottom:20px;padding-left:10px">
+            <div v-bind:class="{full-width: isFullActive}" class="markdown-body ts-markdown-body-color" style="margin-bottom:20px;padding-left:10px">
               <h1>{{ title }}</h1>
+              <button
+              @click="isFullActive = !isFullActive"
+              >{{isFullActive ? 'Full Width' : 'Half Width'}}</button>
             </div>
 
             <div v-for="(obj, index) in blocks" :key="index">
@@ -112,7 +115,7 @@ limitations under the License.
                 <div v-if="index === blocks.length - 1 || obj.showPanel || obj.isActive" class="field is-grouped">
                   <p class="control">
                     <button class="button is-rounded" v-on:click="addBlock(index)">
-                      + Text
+                      + Text Shie
                     </button>
                   </p>
                   <p class="control" v-if="meta.views.length">
@@ -177,6 +180,7 @@ export default {
       title: '',
       aggregations: [],
       aggregationGroups: [],
+      isFullActive: false,
     }
   },
   methods: {
@@ -314,6 +318,10 @@ export default {
   line-height: 1.5;
   word-wrap: break-word;
   max-width: 75ch;
+}
+
+.full-width{
+  max-width: 100ch !important;
 }
 
 .markdown-body details {
